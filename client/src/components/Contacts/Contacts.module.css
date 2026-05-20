@@ -1,0 +1,16 @@
+.contacts {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  min-width: max-content;
+}
+
+.contacts a {
+  font-size: var(--big-text);
+  font-weight: bold;
+}
+
+.contacts span {
+  font-size: var(--small-text);
+  color: var(--text);
+}

@@ -1,0 +1,43 @@
+.headerContainer {
+  background-color: white;
+  padding: 24px 60px;
+}
+
+.headerContent {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  font-size: var(--med-text);
+
+  height: 100%;
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 200px;
+}
+
+.headerContent :global(.icon-phone) {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .headerContainer {
+    padding: 12px 24px;
+  }
+
+  .centerText {
+    display: none;
+  }
+
+  .headerContent > div {
+    display: none;
+  }
+
+  .headerContent :global(.icon-phone) {
+    display: block;
+    font-size: 30px;
+  }
+}

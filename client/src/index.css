@@ -1,0 +1,32 @@
+@import url(./Icons/style.css);
+
+:root {
+  --text: #6b6375;
+  --green: rgb(12, 172, 0);
+  --gray: #eee;
+  --big-text: 24px;
+  --med-text: 18px;
+  --small-text: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+button {
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+}
