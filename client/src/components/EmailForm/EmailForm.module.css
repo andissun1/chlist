@@ -1,0 +1,60 @@
+.emailForm {
+  display: flex;
+  height: calc(100% - 40px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gray);
+  margin: 20px;
+}
+
+.inputsContainer {
+  display: flex;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: var(--small-text);
+  margin: 12px;
+}
+
+.checkbox input {
+  height: 20px;
+  width: 20px;
+  margin-right: 12px;
+}
+
+/* Стили кнопки */
+.nextButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--med-text);
+  color: white;
+  font-weight: bold;
+  border-radius: 36px;
+  padding: 18px;
+  width: 100%;
+  max-width: 300px;
+
+  margin: 12px auto;
+  background-image: linear-gradient(rgb(255, 98, 109), rgb(246, 2, 36));
+
+  transition: transform 0.2s ease-out;
+}
+
+.nextButton:hover {
+  transform: scale(1.05);
+}
+
+.nextButton:active {
+  background-image: linear-gradient(rgb(255, 98, 109, 0.8), rgb(246, 2, 36, 0.8));
+}
+
+@media (max-width: 800px) {
+  .inputsContainer {
+    flex-direction: column;
+  }
+}

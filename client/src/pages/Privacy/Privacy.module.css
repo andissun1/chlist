@@ -1,2 +1,16 @@
-/* .Privacy {
-} */
+.privacy {
+  padding: 0 60px;
+}
+
+.privacy p {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.privacy ul {
+  padding: 0 16px;
+}
+
+.privacy span {
+  color: black;
+}

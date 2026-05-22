@@ -1,0 +1,59 @@
+/* .Questionnaire {
+} */
+
+.answersBlock {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+}
+
+.answer {
+  text-align: center;
+  margin: 12px;
+  padding: 12px;
+  height: fit-content;
+  border-radius: 6px;
+  background-color: lightgray;
+  font-size: var(--med-text);
+}
+
+.answer:hover {
+  background-color: rgb(181, 181, 181);
+}
+
+.answer:active {
+  background-color: var(--green);
+  color: white;
+}
+
+.nextButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--med-text);
+  color: white;
+  font-weight: bold;
+  border-radius: 36px;
+  padding: 18px;
+  width: 100%;
+  max-width: 300px;
+
+  margin: 24px auto;
+  background-image: linear-gradient(rgb(255, 98, 109), rgb(246, 2, 36));
+
+  transition: transform 0.2s ease-out;
+}
+
+.nextButton:hover {
+  transform: scale(1.05);
+}
+
+.nextButton:active {
+  background-image: linear-gradient(rgb(255, 98, 109, 0.8), rgb(246, 2, 36, 0.8));
+}
+
+.progressBar {
+  width: 20%;
+  height: 5px;
+  background-color: var(--green);
+}

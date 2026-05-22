@@ -1,6 +1,6 @@
 import style from './Contacts.module.css';
 
-export const phone = '+7 (903) 032-12-45';
+export const phone = '+7 (962) 666-73-63';
 
 export const Contacts = () => {
   return (

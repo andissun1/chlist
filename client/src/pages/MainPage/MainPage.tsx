@@ -1,6 +1,13 @@
+import { useState } from 'react';
+import { Questionnaire } from '../../components/Questionnaire/Questionnaire';
 import style from './MainPage.module.css';
+import { EmailForm } from '../../components/EmailForm/EmailForm';
 
 export const MainPage = () => {
+  const [userInfo, setUserInfo] = useState({ isReady: false });
+
+  const toggleForm = () => setUserInfo({ ...userInfo, isReady: !userInfo.isReady });
+
   return (
     <div className={style.mainPage}>
       <h1>
@@ -12,18 +19,7 @@ export const MainPage = () => {
       </p>
 
       <div className={style.formContainer}>
-        <div className={style.progressBar} />
-
-        <h2>Какие у вас непогашенные кредиты?</h2>
-        <div className={style.answersBlock}>
-          <button className={style.answer}>Потребительский</button>
-          <button className={style.answer}>Кредитная карта</button>
-          <button className={style.answer}>Микрозайм</button>
-          <button className={style.answer}>Ипотека</button>
-          <button className={style.answer}>Автокредит</button>
-          <button className={style.answer}>Возврат страховки</button>
-        </div>
-        <button className={style.nextButton}>ДАЛЕЕ</button>
+        {userInfo.isReady ? <EmailForm /> : <Questionnaire toggleForm={toggleForm} />}
       </div>
     </div>
   );
