@@ -24,7 +24,7 @@
 .yaMap {
   display: block;
   border-radius: 12px;
-  background-image: url('yandex_map.png');
+  background-image: url('/yandex_map.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
