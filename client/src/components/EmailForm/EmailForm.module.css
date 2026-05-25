@@ -7,6 +7,8 @@
   background-color: var(--gray);
   margin: 20px;
   padding: 12px;
+
+  min-height: 300px;
 }
 
 .inputsContainer {
