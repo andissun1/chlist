@@ -11,6 +11,46 @@ export const EmailForm = () => {
     isSubmited: false,
   });
 
+  // Маска для телефона
+  function onPhoneInput(event: React.InputEvent<HTMLInputElement>) {
+    let value = event.currentTarget.value;
+    let inputNumbersValue = value.replace(/\D/g, '');
+    const selectionStart = event.currentTarget.selectionStart;
+    // eslint-disable-next-line no-useless-assignment
+    let formattedInputValue = '';
+
+    if (!inputNumbersValue) return setFormData({ ...formData, phone: '' });
+
+    if (value.length != selectionStart) {
+      if (event.nativeEvent.data && /\D/g.test(event.nativeEvent.data)) return;
+      setFormData({ ...formData, phone: value });
+      return;
+    }
+
+    if (['7', '8', '9'].includes(inputNumbersValue[0])) {
+      if (inputNumbersValue[0] == '9') inputNumbersValue = '7' + inputNumbersValue;
+      const firstSymbols = inputNumbersValue[0] == '8' ? '8' : '+7';
+      // eslint-disable-next-line no-useless-assignment
+      formattedInputValue = value = firstSymbols + ' ';
+      if (inputNumbersValue.length > 1) {
+        formattedInputValue += '(' + inputNumbersValue.substring(1, 4);
+      }
+      if (inputNumbersValue.length >= 5) {
+        formattedInputValue += ') ' + inputNumbersValue.substring(4, 7);
+      }
+      if (inputNumbersValue.length >= 8) {
+        formattedInputValue += '-' + inputNumbersValue.substring(7, 9);
+      }
+      if (inputNumbersValue.length >= 10) {
+        formattedInputValue += '-' + inputNumbersValue.substring(9, 11);
+      }
+    } else {
+      formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
+    }
+
+    setFormData({ ...formData, phone: formattedInputValue });
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -56,7 +96,7 @@ export const EmailForm = () => {
               label="Ваш телефон"
               type="tel"
               value={formData.phone}
-              onChange={handleChange}
+              onInput={onPhoneInput}
             />
           </div>
 
