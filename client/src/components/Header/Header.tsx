@@ -14,7 +14,7 @@ export const Header = () => {
           onClick={() => navigate('/')}
           alt="Логотип"
         />
-        <span className={style.centerText}>Агентство по защите должников</span>
+        <span className={style.centerText}>Федеральное агенство по защите должников</span>
         <Contacts />
         <a href={`tel:${phone}`} className="icon-phone" />
       </div>

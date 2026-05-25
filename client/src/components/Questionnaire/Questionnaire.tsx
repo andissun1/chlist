@@ -6,7 +6,7 @@ type QuestionnaireProps = {
 
 export const Questionnaire = ({ toggleForm }: QuestionnaireProps) => {
   return (
-    <div className={style.Questionnaire}>
+    <div className={style.questionnaire}>
       <div className={style.progressBar} />
 
       <h2>Какие у вас непогашенные кредиты?</h2>

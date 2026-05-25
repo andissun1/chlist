@@ -1,0 +1,48 @@
+.UserPain {
+  display: flex;
+
+  min-height: 500px;
+  font-size: var(--med-text);
+  padding: 24px;
+  background-color: var(--gray);
+
+  /* TODO */
+  margin: 0 -60px;
+  padding: 60px 60px;
+}
+
+.UserPain h2 {
+  /* text-align: center; */
+}
+
+.UserPain img {
+  display: inline-block;
+  width: 50%;
+  border-radius: 6px;
+}
+
+.process {
+  padding-left: 18px;
+  align-self: flex-start;
+}
+
+.process li {
+  margin: 12px 0;
+  font-size: var(--med-text);
+}
+
+@media (max-width: 800px) {
+  .UserPain {
+    /* TODO */
+    margin: 0 -24px;
+    padding: 24px 24px;
+  }
+
+  .UserPain {
+    flex-direction: column;
+  }
+
+  .UserPain img {
+    width: 100%;
+  }
+}

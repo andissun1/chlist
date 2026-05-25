@@ -1,0 +1,52 @@
+.actionBlock {
+  display: flex;
+  flex-direction: column;
+
+  background: url(/mainPage_background.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+
+  /* TODO */
+  margin: 0 -60px;
+  padding: 0 60px;
+}
+
+.mark {
+  color: var(--green);
+}
+
+.actionText {
+  font-size: var(--med-text);
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.085);
+}
+
+.formContainer h2 {
+  font-size: var(--big-text);
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .actionBlock {
+    /* TODO */
+    margin: 0 -24px;
+    padding: 0 24px;
+
+    flex: 1;
+    height: auto;
+  }
+
+  .formContainer {
+    flex: 1;
+    height: auto;
+    margin-bottom: 12px;
+  }
+}
