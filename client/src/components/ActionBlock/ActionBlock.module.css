@@ -1,15 +1,18 @@
-.actionBlock {
-  display: flex;
-  flex-direction: column;
-
+.customSection {
   background: url(/mainPage_background.jpg);
   background-size: cover;
   background-position: center;
+
+  padding: 30px 60px;
+}
+
+.actionBlock {
+  display: flex;
+  flex-direction: column;
   height: 700px;
 
-  /* TODO */
-  margin: 0 -60px;
-  padding: 0 60px;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .mark {
@@ -35,11 +38,11 @@
 }
 
 @media (max-width: 800px) {
-  .actionBlock {
-    /* TODO */
-    margin: 0 -24px;
-    padding: 0 24px;
+  .customSection {
+    padding: 24px 24px;
+  }
 
+  .actionBlock {
     flex: 1;
     height: auto;
   }

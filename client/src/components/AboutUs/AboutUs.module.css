@@ -1,24 +1,16 @@
-.UserPain {
+.AboutUs {
   display: flex;
-
   min-height: 500px;
   font-size: var(--med-text);
-  padding: 24px;
-  background-color: var(--gray);
 
-  /* TODO */
-  margin: 0 -60px;
-  padding: 60px 60px;
+  gap: 24px;
 }
 
-.UserPain h2 {
-  /* text-align: center; */
-}
-
-.UserPain img {
+.AboutUs img {
   display: inline-block;
   width: 50%;
   border-radius: 6px;
+  object-fit: cover;
 }
 
 .process {
@@ -32,17 +24,11 @@
 }
 
 @media (max-width: 800px) {
-  .UserPain {
-    /* TODO */
-    margin: 0 -24px;
-    padding: 24px 24px;
-  }
-
-  .UserPain {
+  .AboutUs {
     flex-direction: column;
   }
 
-  .UserPain img {
+  .AboutUs img {
     width: 100%;
   }
 }

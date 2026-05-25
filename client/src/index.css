@@ -30,3 +30,20 @@ button {
   font-size: inherit;
   font-family: inherit;
 }
+
+.section {
+  width: 100%;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.section > div {
+  max-width: 1440px;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  .section {
+    padding: 24px 24px;
+  }
+}
