@@ -29,9 +29,9 @@ export class AppService {
     <div style="margin-bottom: 10px;"><strong>Имя:</strong> <span style="color: #555;">${formData.name}</span></div>
     <div style="margin-bottom: 10px;"><strong>Телефон:</strong> <a href="tel:${formData.phone}" style="color: #3498db; text-decoration: none;">${formData.phone}</a></div>
     <div style="margin-bottom: 10px;"><strong>Тип кредита:</strong> <span style="color: #555;">${formData.typeOfCredits}</span></div>
-    <div><strong>Сумма долга:</strong> <span style="color: #555;">${formData.sumOfCredits}</span></div>
-    <div><strong>Просрочки:</strong> <span style="color: #555;">${formData.overduePayment}</span></div>
-    <div><strong>Коллекторы:</strong> <span style="color: #555;">${formData.collectors}</span></div>
+    <div style="margin-bottom: 10px;"><strong>Сумма долга:</strong> <span style="color: #555;">${formData.sumOfCredits}</span></div>
+    <div style="margin-bottom: 10px;"><strong>Просрочки:</strong> <span style="color: #555;">${formData.overduePayment}</span></div>
+    <div style="margin-bottom: 10px;"><strong>Коллекторы:</strong> <span style="color: #555;">${formData.collectors}</span></div>
     <div><strong>Как лучше связаться:</strong> <span style="color: #555;">${formData.сommunicationPreferences}</span></div>
   </div>
 
