@@ -1,11 +1,23 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 
+export type FormDataDto = {
+  name: string;
+  phone: string;
+  privacy: boolean;
+  isSubmited: boolean;
+  typeOfCredits: string;
+  sumOfCredits: string;
+  overduePayment: string;
+  collectors: string;
+  сommunicationPreferences: string;
+};
+
 @Injectable()
 export class AppService {
   constructor(private readonly mailService: MailerService) {}
 
-  async sendMail(formData: { name: string; phone: string }) {
+  async sendMail(formData: FormDataDto) {
     await this.mailService.sendMail({
       from: process.env.EMAIL,
       to: process.env.EMAIL,
@@ -16,8 +28,11 @@ export class AppService {
   <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 25px; font-size: 18px">
     <div style="margin-bottom: 10px;"><strong>Имя:</strong> <span style="color: #555;">${formData.name}</span></div>
     <div style="margin-bottom: 10px;"><strong>Телефон:</strong> <a href="tel:${formData.phone}" style="color: #3498db; text-decoration: none;">${formData.phone}</a></div>
-    <div style="margin-bottom: 10px;"><strong>Время для звонка:</strong> <span style="color: #555;">с 10:00 до 18:00</span></div>
-    <div><strong>Причина обращения:</strong> <span style="color: #555;">Консультация по услугам</span></div>
+    <div style="margin-bottom: 10px;"><strong>Тип кредита:</strong> <span style="color: #555;">${formData.typeOfCredits}</span></div>
+    <div><strong>Сумма долга:</strong> <span style="color: #555;">${formData.sumOfCredits}</span></div>
+    <div><strong>Просрочки:</strong> <span style="color: #555;">${formData.overduePayment}</span></div>
+    <div><strong>Коллекторы:</strong> <span style="color: #555;">${formData.collectors}</span></div>
+    <div><strong>Как лучше связаться:</strong> <span style="color: #555;">${formData.сommunicationPreferences}</span></div>
   </div>
 
   <div style="text-align: center; margin: 25px 0;">

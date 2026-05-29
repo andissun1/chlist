@@ -7,7 +7,13 @@ export const Map = () => {
         <h2>Как нас найти?</h2>
         <div className={style.text}>
           <ul>
-            <li>Череповец, пр.Победы 95 (ТЦ "Мир"), офис 107</li>
+            <a
+              className={style.toYandexMap}
+              href="https://yandex.ru/maps/-/CPDYnB8F"
+              target="_blank"
+            >
+              <li>Череповец, пр.Победы 95 (ТЦ "Мир"), офис 107</li>
+            </a>
             <li>Перед посещением лучше записаться через форму или по телефону</li>
           </ul>
         </div>

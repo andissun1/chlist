@@ -29,6 +29,11 @@
   margin-right: 12px;
 }
 
+.toPrivacy {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* Стили кнопки */
 .nextButton {
   display: flex;
@@ -56,6 +61,35 @@
   background-image: linear-gradient(rgb(255, 98, 109, 0.8), rgb(246, 2, 36, 0.8));
 }
 
+.nextButton:disabled {
+  background-color: lightgray;
+  background-image: none;
+}
+
+.progressBar {
+  position: absolute;
+  top: 0;
+
+  height: 5px;
+  background-color: var(--green);
+  width: 100%;
+}
+
+.backButton {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top: 30px;
+  left: 30px;
+  font-size: 25px;
+
+  border-radius: 50%;
+}
+
+.backButton:hover {
+  transform: scale(1.05);
+}
+
 @media (max-width: 800px) {
   .inputsContainer {
     flex-direction: column;
@@ -65,5 +99,18 @@
   .checkbox input {
     width: 35px;
     height: 35px;
+  }
+
+  .backButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    left: -10px;
+
+    transform: translateY(-50%);
   }
 }

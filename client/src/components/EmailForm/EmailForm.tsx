@@ -2,12 +2,18 @@ import { useState } from 'react';
 import { Input } from '../Input/Input';
 import style from './EmailForm.module.css';
 import { Link } from 'react-router-dom';
+import type { userInfo } from '../Questionnaire/Questionnaire';
 
-export const EmailForm = () => {
+type EmailFormProps = {
+  toggleForm: () => void;
+  userInfo: userInfo;
+};
+
+export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    privacy: '',
+    privacy: false,
     isSubmited: false,
   });
 
@@ -65,7 +71,7 @@ export const EmailForm = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ ...formData, ...userInfo }),
     });
 
     if (!response.ok) {
@@ -78,6 +84,8 @@ export const EmailForm = () => {
 
   return (
     <form className={style.emailForm} onSubmit={handleSubmit}>
+      <div className={style.progressBar} />
+
       {formData.isSubmited ? (
         'Ваша заявка отправлена'
       ) : (
@@ -104,21 +112,31 @@ export const EmailForm = () => {
             <input
               type="checkbox"
               id="privacy"
-              value={formData.privacy}
-              onChange={handleChange}
+              onChange={() => setFormData({ ...formData, privacy: !formData.privacy })}
             />
 
             <label htmlFor="privacy">
               Даю согласие на{' '}
-              <Link target="_blank" to={'/privacy'}>
+              <Link className={style.toPrivacy} target="_blank" to={'/privacy'}>
                 обработку персональных данных
-              </Link>{' '}
+              </Link>
             </label>
           </div>
 
-          <button type="submit" className={style.nextButton}>
-            ПОЛУЧИТЬ РЕКОМЕНДАЦИИ
-          </button>
+          <div className={style.buttons}>
+            <button
+              type="button"
+              className={style.backButton + ' icon-angle-left'}
+              onClick={toggleForm}
+            />
+            <button
+              type="submit"
+              className={style.nextButton}
+              disabled={!formData.name || !formData.phone || !formData.privacy}
+            >
+              ПОЛУЧИТЬ РЕКОМЕНДАЦИИ
+            </button>
+          </div>
         </>
       )}
     </form>

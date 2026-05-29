@@ -2,7 +2,8 @@
   padding: 0 60px;
 }
 
-.privacy p {
+.privacy p,
+.privacy ul {
   color: var(--text);
   line-height: 1.5;
 }
@@ -13,4 +14,10 @@
 
 .privacy span {
   color: black;
+}
+
+@media (max-width: 800px) {
+  .privacy {
+    padding: 0 24px;
+  }
 }

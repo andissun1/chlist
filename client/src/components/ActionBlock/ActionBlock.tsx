@@ -1,12 +1,20 @@
 import style from './ActionBlock.module.css';
-// import { Questionnaire } from '../Questionnaire/Questionnaire';
+import { Questionnaire } from '../Questionnaire/Questionnaire';
 import { EmailForm } from '../EmailForm/EmailForm';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 export const ActionBlock = () => {
-  // const [userInfo, setUserInfo] = useState({ isReady: false });
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [userInfo, setUserInfo] = useState({
+    typeOfCredits: '',
+    sumOfCredits: '',
+    overduePayment: '',
+    collectors: '',
+    сommunicationPreferences: '',
+  });
 
-  // const toggleForm = () => setUserInfo({ ...userInfo, isReady: !userInfo.isReady });
+  const [showForm, setShowForm] = useState(false);
+  const toggleForm = () => setShowForm(!showForm);
 
   return (
     <div className={style.customSection}>
@@ -20,8 +28,17 @@ export const ActionBlock = () => {
         </p>
 
         <div className={style.formContainer}>
-          {/* {userInfo.isReady ? <EmailForm /> : <Questionnaire toggleForm={toggleForm} />} */}
-          <EmailForm />
+          {showForm ? (
+            <EmailForm toggleForm={toggleForm} userInfo={userInfo} />
+          ) : (
+            <Questionnaire
+              toggleForm={toggleForm}
+              activeSlide={activeSlide}
+              setActiveSlide={setActiveSlide}
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+            />
+          )}
         </div>
       </div>
     </div>

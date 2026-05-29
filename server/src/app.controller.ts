@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AppService } from './app.service';
+import * as appService from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: appService.AppService) {}
 
   @Get()
   getHello() {
@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Post('sendMail')
-  sendMail(@Body() formData: { name: string; phone: string }) {
+  sendMail(@Body() formData: appService.FormDataDto) {
     return this.appService.sendMail(formData);
   }
 }
