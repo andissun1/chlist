@@ -32,7 +32,6 @@ export class AppService {
     <div style="margin-bottom: 10px;"><strong>Сумма долга:</strong> <span style="color: #555;">${formData.sumOfCredits}</span></div>
     <div style="margin-bottom: 10px;"><strong>Просрочки:</strong> <span style="color: #555;">${formData.overduePayment}</span></div>
     <div style="margin-bottom: 10px;"><strong>Коллекторы:</strong> <span style="color: #555;">${formData.collectors}</span></div>
-    <div><strong>Как лучше связаться:</strong> <span style="color: #555;">${formData.сommunicationPreferences}</span></div>
   </div>
 
   <div style="text-align: center; margin: 25px 0;">

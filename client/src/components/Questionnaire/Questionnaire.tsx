@@ -45,10 +45,6 @@ const slides = {
       'Приходят на работу и домой',
     ],
   },
-  сommunicationPreferences: {
-    title: 'Как удобнее общаться?',
-    answers: ['Звонок/СМС', 'Telegram', 'VK'],
-  },
 };
 
 type SlidesKeys = keyof typeof slides;
@@ -102,7 +98,7 @@ export const Questionnaire = ({
 
         <button
           className={style.nextButton}
-          onClick={activeSlide === 4 ? toggleForm : nextStep}
+          onClick={activeSlide === 3 ? toggleForm : nextStep}
         >
           ДАЛЕЕ
         </button>
