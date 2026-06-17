@@ -73,8 +73,6 @@ export const Questionnaire = ({
     } else nextStep();
 
     if (window.ym) window.ym(109903079, 'reachGoal', `forma_stage${activeSlide + 1}`);
-
-    console.log(activeSlide + 1);
   };
 
   return (
