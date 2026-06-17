@@ -3,18 +3,24 @@ import { Input } from '../Input/Input';
 import style from './EmailForm.module.css';
 import { Link } from 'react-router-dom';
 import type { userInfo } from '../Questionnaire/Questionnaire';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 
 type EmailFormProps = {
   toggleForm: () => void;
   userInfo: userInfo;
 };
 
+interface IForm {
+  name: string;
+  phone: string;
+  privacy: boolean;
+}
+
 export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    privacy: false,
-    isSubmited: false,
+  const [isSubmited, setIsSubmited] = useState(false);
+
+  const { register, handleSubmit, formState, setValue } = useForm<IForm>({
+    mode: 'onBlur',
   });
 
   // Маска для телефона
@@ -25,11 +31,11 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
     // eslint-disable-next-line no-useless-assignment
     let formattedInputValue = '';
 
-    if (!inputNumbersValue) return setFormData({ ...formData, phone: '' });
+    if (!inputNumbersValue) return setValue('phone', '');
 
     if (value.length != selectionStart) {
       if (event.nativeEvent.data && /\D/g.test(event.nativeEvent.data)) return;
-      setFormData({ ...formData, phone: value });
+      setValue('phone', value);
       return;
     }
 
@@ -54,18 +60,10 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
       formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
     }
 
-    setFormData({ ...formData, phone: formattedInputValue });
+    setValue('phone', formattedInputValue);
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const onSubmit: SubmitHandler<IForm> = async (data) => {
     if (window.ym) window.ym(109903079, 'reachGoal', 'forma_recommendazii');
 
     const response = await fetch(import.meta.env.VITE_SERVER + '/sendMail', {
@@ -73,7 +71,7 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...formData, ...userInfo }),
+      body: JSON.stringify({ ...data, ...userInfo }),
     });
 
     if (!response.ok) {
@@ -81,33 +79,50 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
       throw new Error(`API Error: ${response.status} - ${errorText}`);
     }
 
-    setFormData({ ...formData, isSubmited: true });
+    setIsSubmited(true);
     if (window.ym) window.ym(109903079, 'reachGoal', 'zayavka_otpravlena');
   };
 
   return (
-    <form className={style.emailForm} onSubmit={handleSubmit}>
+    <form className={style.emailForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.progressBar} />
 
-      {formData.isSubmited ? (
+      {isSubmited ? (
         'Ваша заявка отправлена'
       ) : (
         <>
           <div className={style.inputsContainer}>
             <Input
-              name="name"
               label="Ваше имя"
               type="text"
-              value={formData.name}
-              onChange={handleChange}
+              {...register('name', {
+                required: {
+                  value: true,
+                  message: 'Обязательное поле',
+                },
+                minLength: {
+                  message: 'Обязательное поле',
+                  value: 2,
+                },
+              })}
+              error={formState.errors.name?.message as string}
             />
 
             <Input
-              name="phone"
               label="Ваш телефон"
               type="tel"
-              value={formData.phone}
               onInput={onPhoneInput}
+              error={formState.errors.phone?.message as string}
+              {...register('phone', {
+                required: {
+                  value: true,
+                  message: 'Обязательное поле',
+                },
+                pattern: {
+                  value: /^(\+7|8)[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+                  message: 'Некорретный формат номера',
+                },
+              })}
             />
           </div>
 
@@ -115,7 +130,7 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
             <input
               type="checkbox"
               id="privacy"
-              onChange={() => setFormData({ ...formData, privacy: !formData.privacy })}
+              {...register('privacy', { required: true })}
             />
 
             <label htmlFor="privacy">
@@ -135,7 +150,12 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
             <button
               type="submit"
               className={style.nextButton}
-              disabled={!formData.name || !formData.phone || !formData.privacy}
+              disabled={
+                Object.keys(formState.errors).length > 0 ||
+                !formState.dirtyFields.name ||
+                !formState.dirtyFields.phone ||
+                !formState.dirtyFields.privacy
+              }
             >
               ПОЛУЧИТЬ РЕКОМЕНДАЦИИ
             </button>

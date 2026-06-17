@@ -17,16 +17,15 @@ export const Input = ({
   name,
   label,
   error,
-  value,
   children,
   required,
   ...props
 }: InputProps) => {
   const changeColor = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (value && !error) {
+    if (!error && event.target.value) {
       event.currentTarget.classList.remove(style.red);
       event.currentTarget.classList.add(style.green);
-    } else if (value && error) {
+    } else if (error || !event.target.value) {
       event.currentTarget.classList.remove(style.green);
       event.currentTarget.classList.add(style.red);
     } else {
@@ -38,9 +37,9 @@ export const Input = ({
   return (
     <div className={`${style.Input} ${required ? style.required : ''}`}>
       {label && <label htmlFor={name}>{label}</label>}
-      <input name={name} value={value || ''} id={name} {...props} onBlur={changeColor} />
+      <input name={name} id={name} {...props} onBlur={changeColor} />
       {children}
-      {value && error && <span>{error}</span>}
+      {error && <span>{error}</span>}
     </div>
   );
 };
