@@ -8,7 +8,7 @@ export const MainLayout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    window.ym(109903079, 'hit', location.pathname);
+    if (window.ym) window.ym(109903079, 'hit', location.pathname);
   }, [location.pathname]);
 
   return (

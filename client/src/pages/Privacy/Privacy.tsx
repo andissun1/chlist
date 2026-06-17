@@ -8,18 +8,6 @@ const info = {
 };
 
 export const Privacy = () => {
-  ym(109903079, 'init', {
-    defer: true,
-    ssr: true,
-    webvisor: true,
-    clickmap: true,
-    ecommerce: 'dataLayer',
-    referrer: document.referrer,
-    url: location.href,
-    accurateTrackBounce: true,
-    trackLinks: true,
-  });
-
   return (
     <div className={style.privacy}>
       <h1>Политика в отношении обработки персональных данных</h1>
