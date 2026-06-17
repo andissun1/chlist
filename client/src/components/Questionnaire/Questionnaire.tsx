@@ -67,6 +67,16 @@ export const Questionnaire = ({
       setUserInfo({ ...userInfo, [currentSlideName]: e.target.textContent });
   };
 
+  const handleNextButton = () => {
+    if (activeSlide === 3) {
+      toggleForm();
+    } else nextStep();
+
+    if (window.ym) window.ym(109903079, 'reachGoal', `forma_stage${activeSlide + 1}`);
+
+    console.log(activeSlide + 1);
+  };
+
   return (
     <div className={style.questionnaire}>
       <div
@@ -96,10 +106,7 @@ export const Questionnaire = ({
           </button>
         )}
 
-        <button
-          className={style.nextButton}
-          onClick={activeSlide === 3 ? toggleForm : nextStep}
-        >
+        <button className={style.nextButton} onClick={handleNextButton}>
           ДАЛЕЕ
         </button>
       </div>

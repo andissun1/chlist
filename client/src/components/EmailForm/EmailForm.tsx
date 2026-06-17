@@ -66,6 +66,8 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
   const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (window.ym) window.ym(109903079, 'reachGoal', 'forma_recommendazii');
+
     const response = await fetch(import.meta.env.VITE_SERVER + '/sendMail', {
       method: 'POST',
       headers: {
@@ -80,6 +82,7 @@ export const EmailForm = ({ toggleForm, userInfo }: EmailFormProps) => {
     }
 
     setFormData({ ...formData, isSubmited: true });
+    if (window.ym) window.ym(109903079, 'reachGoal', 'zayavka_otpravlena');
   };
 
   return (
