@@ -104,7 +104,11 @@ export const Questionnaire = ({
           </button>
         )}
 
-        <button className={style.nextButton} onClick={handleNextButton}>
+        <button
+          className={style.nextButton}
+          onClick={handleNextButton}
+          disabled={!userInfo[currentSlideName]}
+        >
           ДАЛЕЕ
         </button>
       </div>
